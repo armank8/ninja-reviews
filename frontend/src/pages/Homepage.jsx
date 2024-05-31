@@ -11,18 +11,20 @@ export default function Homepage() {
   if (error) {
     return <p>Error .....</p>;
   }
+
+  // console.log(data);
   return (
     <div>
       { Array.isArray(data) && data.map((review) => (
-        <div key={review.id} className="review-card">
+        <div key={review.id} className="review-card" style={{borderBottom:'2px solid var(--primary) ',margin:"2rem 0"}}>
           {
-            console.log(review)
+            // console.log(review)
           }
           <div className="rating">{review.attributes.rating}</div>
           <h2>{review.attributes.title}</h2>
           <small>console list</small>
-          <p>{review.attributes.body}</p>
-          <Link to={`/details/${review.attributes.id}`}>Read More</Link>
+          <p>{review.attributes.body.substring(0,200)}...</p>
+          <Link to={`/details/${review.id}`}>Read More</Link>
         </div>
       ))}
     </div>
